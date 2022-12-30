@@ -1,0 +1,48 @@
+<app-title title="Pagina del Carrito" margin="1.5rem 0 0 2.5rem"></app-title>
+<app-not-found
+  [visible]="!cart || !cart.items.length"
+  notFoundMessage="La página del carrito está vacía!"
+  resetLinkText="Ir a la página de inicio"
+></app-not-found>
+<div *ngIf="cart && cart.items.length" class="container">
+<ul>
+  <li *ngFor="let cartItem of cart.items">
+    <div>
+      <img [src]="cartItem.food.imageUrl" [alt]="cartItem.food.name">
+    </div>
+    <div>
+      <a routerLink="/food/{{cartItem.food.id}}">
+        {{cartItem.food.name}}
+      </a>
+    </div>
+    <div>
+      <select #quantitySelect
+      [value]="cartItem.quantity"
+      (change)="cambiarCantidad(cartItem, quantitySelect.value)">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+    </div>
+    <div>
+      {{cartItem.price | currency}}
+    </div>
+
+    <div>
+      <button class="remove-button" (click)="eliminarDelCarrito(cartItem)">
+        Eliminar
+      </button>
+    </div>
+  </li>
+</ul>
+<div class="checkout">
+  <div>
+    <div class="foods-count">{{cart.totalCount}}</div>
+    <div class="total-price">{{cart.totalPrice|currency}}</div>
+  </div>
+
+  <a routerLink="/checkout">Pasar por la caja</a>
+</div>
+</div>
