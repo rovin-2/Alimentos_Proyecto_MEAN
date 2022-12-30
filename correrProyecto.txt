@@ -1,0 +1,7 @@
+1. Correr mongoDB en la terminal
+	-mongod
+2. Abrir mongo compas
+3. Correr backend desde la terminal en la carpeta donse se encuntra backend
+	-npm start
+4. correr fronted desde la terminal donde se encuentra fronted.
+	-ng serve -o
